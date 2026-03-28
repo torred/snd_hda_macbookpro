@@ -159,22 +159,27 @@ if [ $isubuntu -ge 1 ]; then
         #           modified with extensive backports from later kernel versions
         #           (and in any case there is no linux-source-... package for hwe kernels)
 
-	if [ ! -e /usr/src/linux-source-$kernel_version.tar.bz2 ]; then
+        # if [ ! -e /usr/src/linux-source-$kernel_version.tar.bz2 ]; then
+        if [ ! -e /usr/src/linux-hwe-"$major_minor"_"$kernel_version".orig.tar.gz  -a ! -e /usr/src/linux-source-$kernel_version.tar.bz2 ]; then
 
-		echo "Ubuntu linux kernel source not found in /usr/src: /usr/src/linux-source-$kernel_version.tar.bz2"
+		echo "Ubuntu linux kernel source not found in /usr/src: /usr/src/linux-source-$kernel_version.tar.bz2 or /usr/src/linux-hwe-"$major_minor"_"$kernel_version".orig.tar.gz"
 		echo "assuming the linux kernel source package is not installed"
 		echo "please install the linux kernel source package:"
-		echo "sudo apt install linux-source-$kernel_version"
+		echo "sudo apt install linux-source-$kernel_version or sudo apt source linux-image-unsigned-$UNAME"
 		echo "if the above doesn't work because some distros don't use LTS Kernel, download the linux-source-$kernel_version .deb file"
-		echo "using Archive Manager, Open data.tar.zst, extract /usr/src/linux-source-$kernel_version/linux-source-$kernel_version.tar.bz2"
-		echo "NOTE - This does not work for HWE kernels"
+		echo "using Archive Manager, Open data.tar.zst, extract /usr/src/linux-source-$kernel_version/linux-source-$kernel_version.tar.bz2 or /usr/src/linux-hwe-"$major_minor"_"$kernel_version".orig.tar.gz"
+		echo "NOTE - This can work for HWE kernels"
 
 		exit 1
 
 	fi
 
-	tar --strip-components=2 -xvf /usr/src/linux-source-$kernel_version.tar.bz2 --directory=build/ linux-source-$kernel_version/sound/hda
-
+	#tar --strip-components=2 -xvf /usr/src/linux-source-$kernel_version.tar.bz2 --directory=build/ linux-source-$kernel_version/sound/hda
+	if [ -d /usr/src/linux-hwe-"$major_minor"-"$kernel_version"/sound/hda ]; then
+		cp -r /usr/src/linux-hwe-"$major_minor"-"$kernel_version"/sound/hda "$build_dir"
+	else
+		tar --strip-components=2 -xvf /usr/src/linux-hwe-"$major_minor"_"$kernel_version".orig.tar.gz --directory=build linux-"$major_minor"/sound/hda
+	fi
 else
 	# here we assume the distribution kernel source is essentially the mainline kernel source
 
