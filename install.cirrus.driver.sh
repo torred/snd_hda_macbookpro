@@ -25,7 +25,7 @@ UNAME=${1:-$(uname -r)}
 kernel_version=$(echo $UNAME | cut -d '-' -f1)  #ie 5.2.7
 major_version=$(echo $kernel_version | cut -d '.' -f1)
 minor_version=$(echo $kernel_version | cut -d '.' -f2)
-major_minor=${major_version}${minor_version}
+major_minor=${major_version}.${minor_version}
 
 revision=$(echo $UNAME | cut -d '.' -f3)
 revpart1=$(echo $revision | cut -d '-' -f1)
