@@ -1,4 +1,4 @@
-# snd_hda_macbookpro
+# snd_hda_macbookpro(This update includes support for HWE)
 
 This is a kernel driver for sound on Macs with Cirrus 8409 HDA chips.
 Sound output is now reasonably complete and integrated with Linux.
@@ -59,12 +59,14 @@ NOTA BENE. As of linux kernel 6.17 the sound kernel source directory has been co
            Note that for kernel version 6.17 new files and directories have been added to the repo
            rather than attempting to update the pre 6.17 versions (as the kernel source changes also
            involved name changes and the new files are more consistent with the new kernel names).
-           
-Update NOTE. This copy support Ubuntu LTS 24.04 6.17.
-             My primary testing kernel is Ubuntu LTS 24.04.2 6.17.0-19.
-             My testing device is Macboot Pro 2017(Apple Inc. MacBookPro14,3)
 
 The following installation setup provided by leifliddy.
+
+Update Note:
+    Update date is 3.28.2026.
+    This copy supports Ubuntu LTS 24.04 with kernel 6.17.
+    My primary testing kernel is Ubuntu LTS 24.04.2, kernel 6.17.0-19.
+    My testing device is MacBook Pro 2017 (Apple Inc. MacBookPro14,3).
 
 Compiling and installing driver:
 -------------
