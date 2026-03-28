@@ -59,11 +59,12 @@ NOTA BENE. As of linux kernel 6.17 the sound kernel source directory has been co
            Note that for kernel version 6.17 new files and directories have been added to the repo
            rather than attempting to update the pre 6.17 versions (as the kernel source changes also
            involved name changes and the new files are more consistent with the new kernel names).
-
+           
+Update NOTE. This copy support Ubuntu LTS 24.04 6.17.
+             My primary testing kernel is Ubuntu LTS 24.04.2 6.17.0-19.
+             My testing device is Macboot Pro 2017(Apple Inc. MacBookPro14,3)
 
 The following installation setup provided by leifliddy.
-
-
 
 Compiling and installing driver:
 -------------
@@ -76,6 +77,12 @@ dnf install gcc kernel-devel make patch wget
 ```
 apt install gcc linux-headers-generic make patch wget
 ```
+**ubuntu hwe package install**  
+```
+apt install gcc make patch wget git
+apt source linux-image-unsigned-$(uname -r)
+```
+
 **arch package install**
 ```
 pacman -S gcc linux-headers make patch wget
